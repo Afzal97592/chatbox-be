@@ -55,3 +55,31 @@ export const signin = async (req: Request, res: Response): Promise<any> => {
     res.status(500).json({ message: "Internal server error", error });
   }
 };
+
+// update profile
+
+export const updateUserProfile = async (
+  req: Request | any,
+  res: Response
+): Promise<any> => {
+  try {
+    const { name, bio, isPublic, dob, profilePicture } = req.body;
+    const userId = req.user.userId;
+
+    const findUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        $set: { name, bio, isPublic, dob, profilePicture },
+      },
+      { new: true }
+    );
+    if (!findUser) return res.status(404).json({ message: "user not found" });
+    res
+      .status(200)
+      .json({ message: "Profile updated successfully", user: findUser });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error });
+  }
+};
