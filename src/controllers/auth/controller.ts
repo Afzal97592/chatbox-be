@@ -49,7 +49,6 @@ export const signin = async (req: Request, res: Response): Promise<any> => {
     const token = jwt.sign({ userId: user._id }, SECRET_KEY, {
       expiresIn: "7d",
     });
-
     res.status(200).json({ message: "signin successfully", user, token });
   } catch (error) {
     res.status(500).json({ message: "Internal server error", error });
