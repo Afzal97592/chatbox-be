@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { messaging } from "firebase-admin";
 import { ZodSchema } from "zod";
 
 export const validate = (schema: ZodSchema<any>): any => {
@@ -7,7 +8,8 @@ export const validate = (schema: ZodSchema<any>): any => {
       schema.parse(req.body);
       next();
     } catch (error: any) {
-      return res.status(400).json({ error: error.errors });
+      console.log("error", error);
+      return res.status(400).json({ message: error.errors[0].message });
     }
   };
 };
