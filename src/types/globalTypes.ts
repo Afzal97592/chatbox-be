@@ -2,6 +2,7 @@ import mongoose, { Document } from "mongoose";
 
 export interface UserTypes extends Document {
   name: string;
+  username: string;
   email: string;
   password: string;
   profilePicture?: string;

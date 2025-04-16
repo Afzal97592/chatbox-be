@@ -14,12 +14,21 @@ export const signup = async (req: Request, res: Response): Promise<any> => {
     const { name, email, password } = req.body;
 
     // check if user already
+    const username = `${name
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "_")}_${Math.floor(Math.random() * 90000 + 10000)}`;
     const existingUser = await User.findOne({ email });
     if (existingUser)
       return res.status(400).json({ message: "User already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, password: hashedPassword });
+    const newUser = new User({
+      name,
+      email,
+      password: hashedPassword,
+      username,
+    });
     await newUser.save();
 
     // Generate the token

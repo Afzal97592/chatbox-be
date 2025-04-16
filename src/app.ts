@@ -6,6 +6,8 @@ import path from "path";
 import uploadROutes from "./routes/fileRoutes/upload.routes";
 import { any } from "zod";
 import getAllRoutes from "./routes/getUsers/getAll.routes";
+import User from "./models/User";
+import { usernameScript } from "./scripts/usernameScript";
 
 // const serviceAccount = require(path.join(
 //   __dirname,
@@ -20,6 +22,9 @@ import getAllRoutes from "./routes/getUsers/getAll.routes";
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// write the script for username query in registerd users
+// usernameScript();
 
 // export const bucket = admin.storage().bucket();
 app.use("/api/v1/", router);
