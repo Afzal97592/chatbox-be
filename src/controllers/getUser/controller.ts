@@ -22,9 +22,11 @@ export const getAllUsers = async (
       .skip((page - 1) * limit)
       .limit(Number(limit));
 
+    const totalCount = await User.countDocuments(query);
+
     return res
       .status(200)
-      .json({ message: "users fetched successfully", users });
+      .json({ message: "users fetched successfully", users, totalCount });
   } catch (error) {
     return res.status(500).json({ message: "Internal server error", error });
   }
