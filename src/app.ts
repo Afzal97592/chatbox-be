@@ -8,6 +8,7 @@ import { any } from "zod";
 import getAllRoutes from "./routes/getUsers/getAll.routes";
 import User from "./models/User";
 import { usernameScript } from "./scripts/usernameScript";
+import requestRoutes from "./routes/requests/request.routes";
 
 // const serviceAccount = require(path.join(
 //   __dirname,
@@ -30,5 +31,6 @@ app.use(express.json());
 app.use("/api/v1/", router);
 app.use("/api/v1/", uploadROutes);
 app.use("/api/v1/", getAllRoutes);
+app.use("/api/v1/friend-request/", requestRoutes);
 
 export default app;

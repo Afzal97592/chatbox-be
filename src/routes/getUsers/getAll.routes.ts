@@ -1,7 +1,6 @@
 import express from "express";
-import { auth } from "firebase-admin";
-import { isAuthenticated } from "../../middleware/auth";
 import { getAllUsers } from "../../controllers/getUser/controller";
+import { isAuthenticated } from "../../middleware/auth";
 
 const getAllRoutes = express.Router();
 
