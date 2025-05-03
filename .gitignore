@@ -22,6 +22,10 @@ DerivedData
 *.xcuserstate
 **/.xcode.env.local
 
+# firebase file
+config/
+chatbox-651d7-firebase-adminsdk-fbsvc-4e32c0775b.json
+
 # Android/IntelliJ
 #
 build/
